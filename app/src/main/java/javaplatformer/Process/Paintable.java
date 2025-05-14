@@ -1,5 +1,7 @@
 package javaplatformer.Process;
 
+import javaplatformer.DataTransferObjects.PaintInformation;
+
 public interface Paintable {
-  public void paint();
+  public PaintInformation getPaintInformation();
 }
