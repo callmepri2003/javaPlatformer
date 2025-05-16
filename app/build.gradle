@@ -21,7 +21,7 @@ dependencies {
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // This dependency is used by the application.
+    // This dependency is used by the appliction.
     implementation libs.guava
 }
 
