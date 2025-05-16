@@ -32,6 +32,10 @@ public abstract class PhysicalObject implements Paintable {
         return color;
     }
 
+    public float getMass() {
+        return ((float) (width * height)) / 100;
+    }
+
     public PhysicalObject(Color color, int initialX, int initialY, int width, int height) {
         this.initialX = initialX;
         this.height = height;

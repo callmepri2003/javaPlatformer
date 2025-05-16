@@ -2,34 +2,13 @@ package javaplatformer.GameLogic;
 
 import java.awt.Color;
 
-import javaplatformer.DataTransferObjects.PaintInformation;
-import javaplatformer.Process.ProneToPhysics;
+import javaplatformer.Physics.Velocity;
 
-public class Player extends PhysicalObject implements ProneToPhysics {
+public class Player extends Entity {
 
-    private int currentX;
-    private int currentY;
-    private int speed;
+    public Player(Color color, int initialX, int initialY, int width, int height, Velocity velocity) {
+        super(color, initialX, initialY, width, height, velocity);
 
-    public int getCurrentX() {
-        return currentX;
-    }
-
-    public int getCurrentY() {
-        return currentY;
-    }
-
-    public Player(Color color, int initialX, int initialY, int width, int height, int speed) {
-        super(color, initialX, initialY, width, height);
-        this.currentX = initialX;
-        this.currentY = initialY;
-        this.speed = speed;
-    }
-
-    @Override
-    public PaintInformation getPaintInformation() {
-        return new PaintInformation(this.getColor(), this.getCurrentX(), this.getCurrentY(), this.getWidth(),
-                this.getHeight());
     }
 
 }
