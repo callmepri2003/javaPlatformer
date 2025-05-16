@@ -12,7 +12,7 @@ public class Entity extends PhysicalObject implements ProneToPhysics {
   private float currentY;
   private Velocity velocity;
 
-  private final float maxSpeed = 2;
+  private final float maxSpeed = 8;
 
   public float getCurrentX() {
     return currentX;
@@ -109,6 +109,20 @@ public class Entity extends PhysicalObject implements ProneToPhysics {
 
   public void stopRight() {
     this.velocity.removeXComponent();
+  }
+
+  @Override
+  public void accelerate(Velocity additionalVelocity) {
+    velocity = Velocity.add(velocity, additionalVelocity);
+  }
+
+  @Override
+  public boolean occupiesCoordinate(float xCord, float yCord) {
+    float left = getCurrentX();
+    float top = getCurrentY();
+    float right = getCurrentX() + getWidth();
+    float bottom = getCurrentY() - getHeight();
+    return xCord <= right && xCord >= left && yCord <= top && yCord >= bottom;
   }
 
 }

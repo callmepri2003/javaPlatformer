@@ -7,7 +7,6 @@ package javaplatformer.Physics;
 import java.util.ArrayList;
 import java.util.List;
 
-import javaplatformer.GameLogic.Player;
 import javaplatformer.Process.ProneToPhysics;
 
 public class Universe {
@@ -31,7 +30,14 @@ public class Universe {
     }
 
     public void tick() {
+        // gravity();
         move();
+    }
+
+    private void gravity() {
+        for (ProneToPhysics participant : participants) {
+            participant.accelerate(new Velocity(gravityAcceleration, (float) (Math.PI * 3.0 / 2.0)));
+        }
     }
 
     public void move() {

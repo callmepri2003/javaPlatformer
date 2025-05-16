@@ -26,11 +26,11 @@ public class Velocity {
   }
 
   public float getXVelocity() {
-    return ((float) (this.speed * Math.cos(radians)));
+    return ((float) (Math.abs(this.speed) * Math.cos(radians)));
   }
 
   public float getYVelocity() {
-    return (float) (this.speed * Math.sin(radians));
+    return (float) (Math.abs(this.speed) * Math.sin(radians));
   }
 
   public void removeXComponent() {
@@ -43,7 +43,7 @@ public class Velocity {
     if (newSpeed == 0.0f) {
       newDirection = 0f;
     }
-    this.speed = newSpeed;
+    this.speed = Math.abs(newSpeed);
     this.radians = newDirection;
   }
 
@@ -57,7 +57,7 @@ public class Velocity {
     if (newSpeed == 0.0f) {
       newDirection = 0f;
     }
-    this.speed = newSpeed;
+    this.speed = Math.abs(newSpeed);
     this.radians = newDirection;
   }
 
@@ -75,7 +75,7 @@ public class Velocity {
 
   public Velocity(float speed, float radians) {
     this.radians = radians;
-    this.speed = speed;
+    this.speed = Math.abs(speed);
   }
 
   public float getSpeed() {

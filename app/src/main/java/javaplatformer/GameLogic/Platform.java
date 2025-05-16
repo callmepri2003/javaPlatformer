@@ -16,4 +16,10 @@ public class Platform extends PhysicalObject {
         return new PaintInformation(getColor(), getInitialX(), getInitialY(), getWidth(), getHeight());
     }
 
+    @Override
+    public boolean occupiesCoordinate(float xCord, float yCord) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'occupiesCoordinate'");
+    }
+
 }
