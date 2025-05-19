@@ -2,6 +2,7 @@ package javaplatformer.GameLogic;
 
 import java.awt.Color;
 
+import javaplatformer.Process.Moveable;
 import javaplatformer.Process.Paintable;
 
 public abstract class PhysicalObject implements Paintable {

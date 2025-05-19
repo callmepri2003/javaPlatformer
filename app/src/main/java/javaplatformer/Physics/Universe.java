@@ -7,14 +7,14 @@ package javaplatformer.Physics;
 import java.util.ArrayList;
 import java.util.List;
 
-import javaplatformer.GameLogic.Player;
-import javaplatformer.Process.ProneToPhysics;
+import javaplatformer.Process.Moveable;
+import javaplatformer.Process.Paintable;
 
 public class Universe {
 
     private final float gravityAcceleration = (float) -9.8;
 
-    private List<ProneToPhysics> participants;
+    private List<Paintable> participants;
 
     private static Universe universe;
 
@@ -35,12 +35,14 @@ public class Universe {
     }
 
     public void move() {
-        for (ProneToPhysics participant : participants) {
-            participant.move();
+        for (Paintable participant : participants) {
+            if (participant instanceof Moveable obj) {
+                obj.move();
+            }
         }
     }
 
-    public void participate(ProneToPhysics newPlayer) {
+    public void participate(Paintable newPlayer) {
         participants.add(newPlayer);
     }
 

@@ -5,9 +5,9 @@ import java.awt.Color;
 import javaplatformer.DataTransferObjects.PaintInformation;
 import javaplatformer.DataTransferObjects.DEBUG.Debug;
 import javaplatformer.Physics.Velocity;
-import javaplatformer.Process.ProneToPhysics;
+import javaplatformer.Process.Moveable;
 
-public class Entity extends PhysicalObject implements ProneToPhysics {
+public class Entity extends PhysicalObject implements Moveable {
   private float currentX;
   private float currentY;
   private Velocity velocity;

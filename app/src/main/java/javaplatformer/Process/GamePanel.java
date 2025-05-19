@@ -25,9 +25,7 @@ public class GamePanel extends JPanel {
 
     private void newObject(Paintable paintable) {
         paintables.add(paintable);
-        if (paintable instanceof ProneToPhysics obj) {
-            universe.participate(obj);
-        }
+        universe.participate(paintable);
     }
 
     public GamePanel(List<PhysicalObject> gameObjects) {
