@@ -55,16 +55,16 @@ public class GameFrame extends JFrame implements KeyListener {
     Debug.setFlag("Key has been released.");
     switch (e.getKeyChar()) {
       case 'a':
-        player.stopLeft();
+        player.pressureRight();
         break;
       case 's':
-        player.stopDown();
+        player.pressureUp();
         break;
       case 'd':
-        player.stopLeft();
+        player.pressureLeft();
         break;
       case 'w':
-        player.stopDown();
+        player.pressureDown();
         break;
       default:
         break;

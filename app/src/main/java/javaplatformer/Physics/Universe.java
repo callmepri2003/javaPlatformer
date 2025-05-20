@@ -13,8 +13,6 @@ import javaplatformer.Process.Paintable;
 
 public class Universe {
 
-    private final float gravityAcceleration = (float) -9.8;
-
     private List<Paintable> participants;
 
     private static Universe universe;
@@ -32,31 +30,34 @@ public class Universe {
     }
 
     public void tick() {
-
+        gravity();
         move();
+    }
+
+    private void gravity() {
+        for (Paintable participant : participants) {
+            if (participant instanceof Moveable obj) {
+                obj.accelerate(Velocity.gravityVector);
+            }
+        }
     }
 
     public void move() {
         for (Paintable participant : participants) {
             if (participant instanceof Moveable obj) {
-                boolean overlaps = false;
                 obj.moveX(obj.getXVelocity());
                 obj.moveY(obj.getYVelocity());
 
                 for (Paintable participantCompare : participants) {
-                    if (participantCompare != participant &&
-                            participantCompare.occupies(participant)) {
-                        overlaps = true;
+                    if (participantCompare != participant && participantCompare.occupies(participant)) {
+                        obj.moveX((float) -1.0 * obj.getXVelocity());
+                        obj.moveY((float) -1.0 * obj.getYVelocity());
+                        obj.stop();
+                        obj.setLeverage(true);
                         break;
+                    } else {
+                        obj.setLeverage(false);
                     }
-                }
-
-                if (!overlaps) {
-                    Debug.setFlag("Not overlapping.");
-                } else {
-                    obj.moveX((float) -1.0 * obj.getXVelocity());
-                    obj.moveY((float) -1.0 * obj.getYVelocity());
-                    Debug.setFlag("Overlapping.");
                 }
             }
         }

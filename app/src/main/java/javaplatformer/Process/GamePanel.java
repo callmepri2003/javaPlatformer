@@ -59,7 +59,7 @@ public class GamePanel extends JPanel {
                 player = obj;
             }
         }
-        if (player != null) {
+        if (player != null && Debug.debug) {
             g.drawString("X Velocity:", 50, 50);
             g.drawString(String.valueOf(player.getXVelocity()), 50, 70);
             g.drawString("Y Velocity:", 50, 90);

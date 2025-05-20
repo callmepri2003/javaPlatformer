@@ -11,8 +11,9 @@ public class Entity extends PhysicalObject implements Moveable {
   private float currentX;
   private float currentY;
   private Velocity velocity;
+  private boolean hasLeverage;
 
-  private final float maxSpeed = 2;
+  private final float maxSpeed = 10;
 
   @Override
   public float getCurrentX() {
@@ -52,10 +53,13 @@ public class Entity extends PhysicalObject implements Moveable {
   }
 
   public void pressureLeft() {
-    Debug.updateFlag(" Pressuring left.");
     Velocity newVelocity = Velocity.add(this.velocity, Velocity.leftwardsVelocityVector);
     if (newVelocity.getSpeed() <= maxSpeed) {
-      this.velocity = newVelocity;
+      if (newVelocity.getSpeed() >= 0) {
+        this.velocity = newVelocity;
+      } else {
+        this.velocity = new Velocity(0, newVelocity.getDirection());
+      }
     } else {
       this.velocity = new Velocity(maxSpeed, newVelocity.getDirection());
     }
@@ -66,27 +70,43 @@ public class Entity extends PhysicalObject implements Moveable {
     Velocity newVelocity = Velocity.add(this.velocity, Velocity.rightwardsVelocityVector);
     Debug.updateFlag(" Pressuring right.");
     if (newVelocity.getSpeed() <= maxSpeed) {
-      this.velocity = newVelocity;
+      if (newVelocity.getSpeed() >= 0) {
+        this.velocity = newVelocity;
+      } else {
+        this.velocity = new Velocity(0, newVelocity.getDirection());
+      }
     } else {
       this.velocity = new Velocity(maxSpeed, newVelocity.getDirection());
     }
   }
 
   public void pressureUp() {
+    if (!hasLeverage)
+      return;
     Velocity newVelocity = Velocity.add(this.velocity, Velocity.upawrdsVelocityVector);
     Debug.updateFlag(" Pressuring up.");
     if (newVelocity.getSpeed() <= maxSpeed) {
-      this.velocity = newVelocity;
+      if (newVelocity.getSpeed() >= 0) {
+        this.velocity = newVelocity;
+      } else {
+        this.velocity = new Velocity(0, newVelocity.getDirection());
+      }
     } else {
       this.velocity = new Velocity(maxSpeed, newVelocity.getDirection());
     }
   }
 
   public void pressureDown() {
+    if (!hasLeverage)
+      return;
     Debug.updateFlag(" Pressuring down.");
     Velocity newVelocity = Velocity.add(this.velocity, Velocity.downwardsVelocityVector);
     if (newVelocity.getSpeed() <= maxSpeed) {
-      this.velocity = newVelocity;
+      if (newVelocity.getSpeed() >= 0) {
+        this.velocity = newVelocity;
+      } else {
+        this.velocity = new Velocity(0, newVelocity.getDirection());
+      }
     } else {
       this.velocity = new Velocity(maxSpeed, newVelocity.getDirection());
     }
@@ -118,6 +138,24 @@ public class Entity extends PhysicalObject implements Moveable {
 
   public void stopRight() {
     this.velocity.removeXComponent();
+  }
+
+  public boolean hasLeverage() {
+    return hasLeverage;
+  }
+
+  public void setLeverage(boolean hasLeverage) {
+    this.hasLeverage = hasLeverage;
+  }
+
+  @Override
+  public void stop() {
+    this.velocity = Velocity.zeroVector;
+  }
+
+  @Override
+  public void accelerate(Velocity toAdd) {
+    this.velocity = Velocity.add(this.velocity, toAdd);
   }
 
 }

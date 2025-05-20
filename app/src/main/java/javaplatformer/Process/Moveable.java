@@ -1,5 +1,7 @@
 package javaplatformer.Process;
 
+import javaplatformer.Physics.Velocity;
+
 public interface Moveable {
   public void move();
 
@@ -10,4 +12,12 @@ public interface Moveable {
   public float getXVelocity();
 
   public float getYVelocity();
+
+  public void accelerate(Velocity toAdd);
+
+  public void stop();
+
+  public boolean hasLeverage();
+
+  public void setLeverage(boolean hasLeverage);
 }

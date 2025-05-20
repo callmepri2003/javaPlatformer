@@ -4,13 +4,15 @@ public class Velocity {
   private float speed;
   private float radians;
 
-  public static final Velocity upawrdsVelocityVector = new Velocity(2, (float) (1 * Math.PI / 2));
+  public static final Velocity upawrdsVelocityVector = new Velocity(5, (float) (1 * Math.PI / 2));
 
-  public static final Velocity leftwardsVelocityVector = new Velocity(2, (float) (2 * Math.PI / 2));
+  public static final Velocity leftwardsVelocityVector = new Velocity(5, (float) (2 * Math.PI / 2));
 
-  public static final Velocity downwardsVelocityVector = new Velocity(2, (float) (3 * Math.PI / 2));
+  public static final Velocity downwardsVelocityVector = new Velocity(5, (float) (3 * Math.PI / 2));
 
-  public static final Velocity rightwardsVelocityVector = new Velocity(2, (float) (4 * Math.PI / 2));
+  public static final Velocity rightwardsVelocityVector = new Velocity(5, (float) (4 * Math.PI / 2));
+
+  public static final Velocity gravityVector = new Velocity((float) 0.1, (float) (3 * Math.PI / 2));
 
   public static final Velocity zeroVector = new Velocity(0, 0);
 

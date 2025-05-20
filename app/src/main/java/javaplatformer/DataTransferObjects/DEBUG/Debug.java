@@ -2,6 +2,7 @@ package javaplatformer.DataTransferObjects.DEBUG;
 
 public class Debug {
   private static String flag;
+  public static boolean debug = false;
 
   public static String getFlag() {
     return flag;
