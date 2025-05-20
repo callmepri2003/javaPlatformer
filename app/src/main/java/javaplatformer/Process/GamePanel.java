@@ -53,8 +53,8 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < paintables.size(); i++) {
             PaintInformation info = paintables.get(i).getPaintInformation();
             g.setColor(info.getColor());
-            g.fillRect(Math.round(info.getxPos()), Math.round(this.HEIGHT - info.getyPos()), info.getWidth(),
-                    info.getHeight());
+            g.fillRect(Math.round(info.getxPos()), Math.round(this.HEIGHT - info.getyPos()), (int) info.getWidth(),
+                    (int) info.getHeight());
             if (paintables.get(i) instanceof Player obj) {
                 player = obj;
             }
@@ -66,8 +66,12 @@ public class GamePanel extends JPanel {
             g.drawString(String.valueOf(player.getYVelocity()), 50, 110);
             g.drawString("Direction", 50, 130);
             g.drawString(String.valueOf(player.getDirection()), 50, 150);
-            g.drawString("Debug:", 50, 170);
-            g.drawString(String.valueOf(Debug.getFlag()), 50, 190);
+            g.drawString("X Pos", 50, 170);
+            g.drawString(String.valueOf(player.getCurrentX()), 50, 190);
+            g.drawString("Y Pos", 50, 210);
+            g.drawString(String.valueOf(player.getCurrentY()), 50, 230);
+            g.drawString("Debug:", 50, 250);
+            g.drawString(String.valueOf(Debug.getFlag()), 50, 270);
 
         }
     }

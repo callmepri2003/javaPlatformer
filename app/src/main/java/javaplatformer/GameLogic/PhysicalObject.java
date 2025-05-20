@@ -7,25 +7,25 @@ import javaplatformer.Process.Paintable;
 
 public abstract class PhysicalObject implements Paintable {
 
-    private int initialX;
-    private int initialY;
-    private int height;
-    private int width;
+    private float initialX;
+    private float initialY;
+    private float height;
+    private float width;
     private Color color;
 
-    public int getInitialX() {
+    public float getInitialX() {
         return initialX;
     }
 
-    public int getInitialY() {
+    public float getInitialY() {
         return initialY;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
 
@@ -35,6 +35,24 @@ public abstract class PhysicalObject implements Paintable {
 
     public float getMass() {
         return ((float) (width * height)) / 100;
+    }
+
+    public boolean occupies(Paintable other) {
+        float thisLeft = getCurrentX();
+        float thisRight = thisLeft + getWidth();
+        float thisTop = getCurrentY();
+        float thisBottom = thisTop - getHeight();
+
+        float otherLeft = other.getCurrentX();
+        float otherRight = otherLeft + other.getWidth();
+        float otherTop = other.getCurrentY();
+        float otherBottom = otherTop - other.getHeight();
+
+        // Axis-Aligned Bounding Box (AABB) collision check
+        return thisLeft < otherRight &&
+                thisRight > otherLeft &&
+                thisTop > otherBottom &&
+                thisBottom < otherTop;
     }
 
     public PhysicalObject(Color color, int initialX, int initialY, int width, int height) {

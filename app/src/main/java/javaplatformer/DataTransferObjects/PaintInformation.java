@@ -6,8 +6,8 @@ public class PaintInformation {
   private Color color;
   private float xPos;
   private float yPos;
-  private int width;
-  private int height;
+  private float width;
+  private float height;
 
   public float getxPos() {
     return xPos;
@@ -25,7 +25,7 @@ public class PaintInformation {
     this.yPos = yPos;
   }
 
-  public int getWidth() {
+  public float getWidth() {
     return width;
   }
 
@@ -33,7 +33,7 @@ public class PaintInformation {
     this.width = width;
   }
 
-  public int getHeight() {
+  public float getHeight() {
     return height;
   }
 
@@ -49,7 +49,7 @@ public class PaintInformation {
     this.color = color;
   }
 
-  public PaintInformation(Color color, float xPos, float yPos, int width, int height) {
+  public PaintInformation(Color color, float xPos, float yPos, float width, float height) {
     this.color = color;
     this.xPos = xPos;
     this.yPos = yPos;
@@ -64,8 +64,8 @@ public class PaintInformation {
     result = prime * result + ((color == null) ? 0 : color.hashCode());
     result = prime * result + Float.floatToIntBits(xPos);
     result = prime * result + Float.floatToIntBits(yPos);
-    result = prime * result + width;
-    result = prime * result + height;
+    result = prime * result + Float.floatToIntBits(width);
+    result = prime * result + Float.floatToIntBits(height);
     return result;
   }
 

@@ -7,6 +7,7 @@ package javaplatformer.Physics;
 import java.util.ArrayList;
 import java.util.List;
 
+import javaplatformer.DataTransferObjects.DEBUG.Debug;
 import javaplatformer.Process.Moveable;
 import javaplatformer.Process.Paintable;
 
@@ -31,13 +32,32 @@ public class Universe {
     }
 
     public void tick() {
+
         move();
     }
 
     public void move() {
         for (Paintable participant : participants) {
             if (participant instanceof Moveable obj) {
-                obj.move();
+                boolean overlaps = false;
+                obj.moveX(obj.getXVelocity());
+                obj.moveY(obj.getYVelocity());
+
+                for (Paintable participantCompare : participants) {
+                    if (participantCompare != participant &&
+                            participantCompare.occupies(participant)) {
+                        overlaps = true;
+                        break;
+                    }
+                }
+
+                if (!overlaps) {
+                    Debug.setFlag("Not overlapping.");
+                } else {
+                    obj.moveX((float) -1.0 * obj.getXVelocity());
+                    obj.moveY((float) -1.0 * obj.getYVelocity());
+                    Debug.setFlag("Overlapping.");
+                }
             }
         }
     }

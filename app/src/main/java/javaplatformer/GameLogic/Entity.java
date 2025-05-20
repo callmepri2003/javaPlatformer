@@ -14,12 +14,22 @@ public class Entity extends PhysicalObject implements Moveable {
 
   private final float maxSpeed = 2;
 
+  @Override
   public float getCurrentX() {
     return currentX;
   }
 
+  @Override
   public float getCurrentY() {
     return currentY;
+  }
+
+  public void moveX(float xDelta) {
+    this.currentX += xDelta;
+  }
+
+  public void moveY(float yDelta) {
+    this.currentY += yDelta;
   }
 
   @Override
@@ -37,8 +47,7 @@ public class Entity extends PhysicalObject implements Moveable {
 
   @Override
   public void move() {
-    this.currentX += getXVelocity();
-    this.currentY += getYVelocity();
+
     Debug.setFlag(String.format(" Added %f to x and %f to y", getXVelocity(), getYVelocity()));
   }
 

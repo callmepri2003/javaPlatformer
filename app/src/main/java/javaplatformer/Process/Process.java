@@ -16,7 +16,7 @@ public class Process {
         Player player = new Player(
                 Color.LIGHT_GRAY,
                 300,
-                200,
+                250,
                 100,
                 100,
                 new Velocity((float) 0.0, (float) Math.PI));
@@ -26,6 +26,12 @@ public class Process {
                         Color.WHITE,
                         0,
                         100,
+                        1080,
+                        100),
+                new Platform(
+                        Color.WHITE,
+                        480,
+                        300,
                         1080,
                         100));
         JFrame frame = new GameFrame("Simple platformer", player);
